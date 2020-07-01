@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { TodoModule } from './todo/todo.module';
 import { NoteModule } from './note/note.module';
 import { default as config } from './config';
 
@@ -12,7 +11,6 @@ const authSource = config.db.authSource ? ('?authSource=' + config.db.authSource
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://' + userString + config.db.host + ':' + (config.db.port || '27017') + '/' + config.db.database + authSource),
-    TodoModule,
     NoteModule
   ],
   controllers: [AppController],
